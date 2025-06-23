@@ -7,9 +7,9 @@ private:
 
 public:
     /**
-     * @brief						Attachment constructor
+     * @brief Attachment constructor
      *
-     * @param allocationSize		[IN]	Allocation size
+     * @param allocationSize [IN] Allocation size
      */
     explicit Attachment(size_t allocationSize);
 
@@ -27,17 +27,17 @@ public:
 };
 
 /**
- * @brief							"new" operator - dynamically allocate memory
+ * @brief "new" operator - dynamically allocate memory
  *
- * @param size						[IN]	Allocation size
- * @return									Pointer to the allocated memory
+ * @param size [IN] Allocation size
+ * @return Pointer to the allocated memory
  */
 void* operator new(size_t size);
 
 /**
- * @brief							"delte" operator - free dynamically allocated memory
+ * @brief "delte" operator - free dynamically allocated memory
  *
- * @param size						[IN]	Pointer to the allocation
+ * @param size [IN] Pointer to the allocation
  */
 void operator delete(void* pointer);
 
