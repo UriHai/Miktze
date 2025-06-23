@@ -1,8 +1,21 @@
+#include <iostream>
+#include "Miktze.h"
 
-#include <memory>
+using std::cout;
+using std::endl;
+
 int main() {
-	int* a = new int[4];
-	free((void*)1000);
+    int* x = new int;
+    double* y = new double;
+    void* z = operator new (1337);
+    printAttachments();
+    delete(x);
+    cout << "Deleted first allocation" << endl;
+    printAttachments();
+    delete(y);
+    delete(z);
+    cout << "Deleted all allocations" << endl;
+    printAttachments();
 
-	return 0;
+    return 0;
 }
