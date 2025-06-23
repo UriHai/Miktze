@@ -2,28 +2,28 @@
 
 class Attachment final {
 private:
-    size_t m_allocationSize;
-    Attachment* m_next;
+	size_t m_allocationSize;
+	Attachment* m_next;
 
 public:
-    /**
-     * @brief								Attachment constructor
-     *
-     * @param allocationSize		[IN]	Allocation size
-     */
-    explicit Attachment(size_t allocationSize);
+	/**
+	 * @brief								Attachment constructor
+	 *
+	 * @param allocationSize		[IN]	Allocation size
+	 */
+	explicit Attachment(size_t allocationSize);
 
-    // Get Allocation size
-    size_t getAllocationSize() const;
+	// Get Allocation size
+	size_t getAllocationSize() const;
 
-    // Get next Allocation
-    Attachment* getNext() const;
+	// Get next Allocation
+	Attachment* getNext() const;
 
-    // Set Allocation size
-    void setAllocationSize(size_t allocationSize);
+	// Set Allocation size
+	void setAllocationSize(size_t allocationSize);
 
-    // Set next Allocation
-    void setNext(Attachment* next);
+	// Set next Allocation
+	void setNext(Attachment* next);
 };
 
 /**
@@ -46,6 +46,6 @@ void printAttachments();
 
 class BadFree {
 public:
-    // BadFree error constructor
-    BadFree();
+	// BadFree error constructor
+	BadFree();
 };
