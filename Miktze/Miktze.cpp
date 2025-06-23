@@ -2,10 +2,12 @@
 
 #include <iostream>
 #include <memory>
+#include <string>
 
 using std::bad_alloc;
 using std::cout;
 using std::endl;
+using std::string;
 
 Attachment* attachments = nullptr;
 
@@ -51,13 +53,36 @@ void* operator new(size_t size) {
 }
 
 void operator delete(void* pointer) {
-	Attachment* attachmnet = (Attachment*)attachments - 1;
+	if (!attachments || !pointer) {
+		throw BadFree();
+	}
+	Attachment* attachment = (Attachment*)pointer - 1;
 	Attachment* node = attachments;
 
-	while (node->getNext() != attachmnet and node) {
+	if (node == attachment) {
+		attachments = attachments->getNext();
+		free(attachment);
+		return;
+	}
+	while (node) {
+		if (node->getNext() == attachment) {
+			node->setNext(attachment->getNext());
+			free(attachment);
+				return;
+		}
 		node = node->getNext();
 	}
-	node->setNext(attachmnet->getNext());
-	free(attachmnet);
+	throw BadFree();
 }
 
+void printAttachments() {
+	Attachment* node = attachments;
+	while (node) {
+		cout << "Address: " << node + 1 << " Size: " << node->getAllocationSize() << endl;
+		node = node->getNext();
+	}
+}
+
+BadFree::BadFree() {
+	cout << "Cannot free memory that was not allocated using malloc" << endl;
+}
